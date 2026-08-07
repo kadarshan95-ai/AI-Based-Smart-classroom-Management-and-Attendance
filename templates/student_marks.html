@@ -1,0 +1,28 @@
+{% extends "role_base.html" %}
+{% block title %}Student Marks{% endblock %}
+{% block nav %}
+<nav>
+  <a href="{{ url_for('student_dashboard') }}">Dashboard</a>
+  <a href="{{ url_for('student_attendance') }}">View Attendance</a>
+  <a href="{{ url_for('student_notes') }}">Download Notes</a>
+  <a href="{{ url_for('student_assignments') }}">Submit Assignments</a>
+  <a href="{{ url_for('student_marks') }}">Check Marks</a>
+  <a href="{{ url_for('student_notifications') }}">Notifications</a>
+  <a href="{{ url_for('logout') }}">Logout</a>
+</nav>
+{% endblock %}
+{% block content %}
+<header class="topbar"><div><h2>Marks</h2><p>Check your academic scores.</p></div></header>
+<div class="form-card">
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead><tr><th>Course</th><th>Term</th><th>Mark</th></tr></thead>
+      <tbody>
+        {% for row in rows %}
+        <tr><td>{{ row.course_name }}</td><td>{{ row.term }}</td><td>{{ row.mark }}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

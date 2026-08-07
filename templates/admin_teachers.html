@@ -1,0 +1,42 @@
+{% extends "role_base.html" %}
+{% block title %}Admin Teachers{% endblock %}
+{% block nav %}
+<nav>
+  <a href="{{ url_for('admin_dashboard') }}">Dashboard</a>
+  <a href="{{ url_for('admin_students') }}">Students</a>
+  <a href="{{ url_for('admin_teachers') }}">Teachers</a>
+  <a href="{{ url_for('admin_courses') }}">Courses</a>
+  <a href="{{ url_for('admin_classrooms') }}">Classrooms</a>
+  <a href="{{ url_for('admin_reports') }}">Reports</a>
+  <a href="{{ url_for('logout') }}">Logout</a>
+</nav>
+{% endblock %}
+{% block content %}
+<header class="topbar">
+  <div>
+    <h2>Manage Teachers</h2>
+    <p>Add and list faculty profiles.</p>
+  </div>
+</header>
+<div class="form-card">
+  <form method="post" class="simple-form">
+    <h3>Add Teacher</h3>
+    <label>Name<input type="text" name="name" required /></label>
+    <label>Email<input type="email" name="email" required /></label>
+    <label>Department<input type="text" name="department" required /></label>
+    <button class="btn-primary" type="submit">Save Teacher</button>
+  </form>
+</div>
+<div class="form-card">
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead><tr><th>Name</th><th>Email</th><th>Department</th></tr></thead>
+      <tbody>
+        {% for teacher in teachers %}
+        <tr><td>{{ teacher.name }}</td><td>{{ teacher.email }}</td><td>{{ teacher.department }}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

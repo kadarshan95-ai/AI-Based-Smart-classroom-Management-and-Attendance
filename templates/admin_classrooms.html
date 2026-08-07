@@ -1,0 +1,42 @@
+{% extends "role_base.html" %}
+{% block title %}Admin Classrooms{% endblock %}
+{% block nav %}
+<nav>
+  <a href="{{ url_for('admin_dashboard') }}">Dashboard</a>
+  <a href="{{ url_for('admin_students') }}">Students</a>
+  <a href="{{ url_for('admin_teachers') }}">Teachers</a>
+  <a href="{{ url_for('admin_courses') }}">Courses</a>
+  <a href="{{ url_for('admin_classrooms') }}">Classrooms</a>
+  <a href="{{ url_for('admin_reports') }}">Reports</a>
+  <a href="{{ url_for('logout') }}">Logout</a>
+</nav>
+{% endblock %}
+{% block content %}
+<header class="topbar">
+  <div>
+    <h2>Manage Classrooms</h2>
+    <p>Track classroom capacity and availability.</p>
+  </div>
+</header>
+<div class="form-card">
+  <form method="post" class="simple-form">
+    <h3>Add Classroom</h3>
+    <label>Name<input type="text" name="name" required /></label>
+    <label>Capacity<input type="number" name="capacity" required /></label>
+    <label>Status<select name="status"><option>Available</option><option>Occupied</option></select></label>
+    <button class="btn-primary" type="submit">Save Classroom</button>
+  </form>
+</div>
+<div class="form-card">
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead><tr><th>Name</th><th>Capacity</th><th>Status</th></tr></thead>
+      <tbody>
+        {% for classroom in classrooms %}
+        <tr><td>{{ classroom.name }}</td><td>{{ classroom.capacity }}</td><td>{{ classroom.status }}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

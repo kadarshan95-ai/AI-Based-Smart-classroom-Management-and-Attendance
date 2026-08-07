@@ -1,0 +1,29 @@
+{% extends "role_base.html" %}
+{% block title %}Teacher Reports{% endblock %}
+{% block nav %}
+<nav>
+  <a href="{{ url_for('teacher_dashboard') }}">Dashboard</a>
+  <a href="{{ url_for('teacher_attendance') }}">Mark Attendance</a>
+  <a href="{{ url_for('teacher_assignments') }}">Assignments</a>
+  <a href="{{ url_for('teacher_notes') }}">Notes</a>
+  <a href="{{ url_for('teacher_marks') }}">Marks</a>
+  <a href="{{ url_for('teacher_reports') }}">Class Reports</a>
+  <a href="{{ url_for('teacher_insights') }}">AI Insights</a>
+  <a href="{{ url_for('logout') }}">Logout</a>
+</nav>
+{% endblock %}
+{% block content %}
+<header class="topbar"><div><h2>Class Reports</h2><p>Overall performance and attendance summary.</p></div></header>
+<div class="form-card">
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead><tr><th>Student</th><th>Class</th><th>Average Mark</th><th>Present Count</th></tr></thead>
+      <tbody>
+        {% for row in rows %}
+        <tr><td>{{ row.name }}</td><td>{{ row.class_name }}</td><td>{{ row.avg_mark }}</td><td>{{ row.present_count }}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Tasks · SnapClass{% endblock %}
+
+{% block content %}
+<header class="topbar">
+  <div>
+    <h2>Task Planner</h2>
+    <p>Create and review classroom tasks for today.</p>
+  </div>
+</header>
+
+<div class="form-card">
+  <form method="post" class="simple-form">
+    <h3>Add a new task</h3>
+    <label>
+      Task title
+      <input type="text" name="title" required />
+    </label>
+    <label>
+      Time
+      <input type="text" name="time" required placeholder="09:30 AM" />
+    </label>
+    <label>
+      Class name
+      <input type="text" name="class_name" required />
+    </label>
+    <button class="btn-primary" type="submit">Save Task</button>
+  </form>
+</div>
+
+<div class="form-card">
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Task</th>
+          <th>Time</th>
+          <th>Class</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for task in tasks %}
+        <tr>
+          <td>{{ task.title }}</td>
+          <td>{{ task.time }}</td>
+          <td>{{ task.class_name }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "role_base.html" %}
+{% block title %}Admin Students{% endblock %}
+{% block nav %}
+<nav>
+  <a href="{{ url_for('admin_dashboard') }}">Dashboard</a>
+  <a href="{{ url_for('admin_students') }}">Students</a>
+  <a href="{{ url_for('admin_teachers') }}">Teachers</a>
+  <a href="{{ url_for('admin_courses') }}">Courses</a>
+  <a href="{{ url_for('admin_classrooms') }}">Classrooms</a>
+  <a href="{{ url_for('admin_reports') }}">Reports</a>
+  <a href="{{ url_for('logout') }}">Logout</a>
+</nav>
+{% endblock %}
+{% block content %}
+<header class="topbar">
+  <div>
+    <h2>Manage Students</h2>
+    <p>Add and review student records.</p>
+  </div>
+</header>
+<div class="form-card">
+  <form method="post" class="simple-form">
+    <h3>Add Student</h3>
+    <label>Name<input type="text" name="name" required /></label>
+    <label>Email<input type="email" name="email" required /></label>
+    <label>Class<input type="text" name="class_name" required /></label>
+    <label>Advisor<input type="text" name="advisor" required /></label>
+    <button class="btn-primary" type="submit">Save Student</button>
+  </form>
+</div>
+<div class="form-card">
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead><tr><th>Name</th><th>Email</th><th>Class</th><th>Advisor</th></tr></thead>
+      <tbody>
+        {% for student in students %}
+        <tr><td>{{ student.name }}</td><td>{{ student.email }}</td><td>{{ student.class_name }}</td><td>{{ student.advisor }}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

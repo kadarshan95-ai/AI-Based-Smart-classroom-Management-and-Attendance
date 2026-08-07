@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SnapClass Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body>
+    <div class="main-content">
+      <div class="form-card" style="max-width: 420px; margin: 80px auto;">
+        <h2>SnapClass Secure Login</h2>
+        <p>Use one of the seeded credentials:</p>
+        <ul>
+          <li>Admin: admin@snapclass.com / Admin@123</li>
+          <li>Teacher: teacher@snapclass.com / Teacher@123</li>
+          <li>Student: student@snapclass.com / Student@123</li>
+        </ul>
+        {% if error %}<p style="color:#b91c1c;">{{ error }}</p>{% endif %}
+        <form method="post" class="simple-form">
+          <label>Email
+            <input type="email" name="email" required />
+          </label>
+          <label>Password
+            <input type="password" name="password" required />
+          </label>
+          <button class="btn-primary" type="submit">Login</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

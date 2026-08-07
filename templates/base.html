@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}SnapClass Dashboard{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <h1>SnapClass</h1>
+        <p>Smart Classroom Management</p>
+        <nav>
+          <a href="{{ url_for('index') }}">Overview</a>
+          <a href="{{ url_for('classes') }}">Classes</a>
+          <a href="{{ url_for('attendance') }}">Attendance</a>
+          <a href="{{ url_for('tasks_page') }}">Tasks</a>
+          <a href="{{ url_for('report') }}">Reports</a>
+          <a href="{{ url_for('reset_db') }}">Reset Data</a>
+        </nav>
+      </aside>
+
+      <main class="main-content">
+        {% block content %}{% endblock %}
+      </main>
+    </div>
+  </body>
+</html>

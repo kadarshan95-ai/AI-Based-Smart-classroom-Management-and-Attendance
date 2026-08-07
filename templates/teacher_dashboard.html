@@ -1,0 +1,43 @@
+{% extends "role_base.html" %}
+{% block title %}Teacher Dashboard{% endblock %}
+{% block nav %}
+<nav>
+  <a href="{{ url_for('teacher_dashboard') }}">Dashboard</a>
+  <a href="{{ url_for('teacher_attendance') }}">Mark Attendance</a>
+  <a href="{{ url_for('teacher_assignments') }}">Assignments</a>
+  <a href="{{ url_for('teacher_notes') }}">Notes</a>
+  <a href="{{ url_for('teacher_marks') }}">Marks</a>
+  <a href="{{ url_for('teacher_reports') }}">Class Reports</a>
+  <a href="{{ url_for('teacher_insights') }}">AI Insights</a>
+  <a href="{{ url_for('logout') }}">Logout</a>
+</nav>
+{% endblock %}
+{% block content %}
+<header class="topbar">
+  <div>
+    <h2>Teacher Dashboard</h2>
+    <p>Manage classes, records, and teaching workflows.</p>
+  </div>
+</header>
+<section class="content-grid">
+  <article class="card">
+    <h3>Teacher Actions</h3>
+    <ul class="item-list">
+      <li><a href="{{ url_for('teacher_attendance') }}">Mark attendance</a></li>
+      <li><a href="{{ url_for('teacher_assignments') }}">Upload assignments</a></li>
+      <li><a href="{{ url_for('teacher_notes') }}">Upload notes</a></li>
+      <li><a href="{{ url_for('teacher_marks') }}">Enter student marks</a></li>
+      <li><a href="{{ url_for('teacher_reports') }}">View class reports</a></li>
+      <li><a href="{{ url_for('teacher_insights') }}">Open AI-based insights</a></li>
+    </ul>
+  </article>
+  <article class="card">
+    <h3>AI Performance Insights</h3>
+    <ul class="item-list">
+      {% for insight in insights %}
+      <li>{{ insight }}</li>
+      {% endfor %}
+    </ul>
+  </article>
+</section>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "role_base.html" %}
+{% block title %}AI Insights{% endblock %}
+{% block nav %}
+<nav>
+  <a href="{{ url_for('teacher_dashboard') }}">Dashboard</a>
+  <a href="{{ url_for('teacher_attendance') }}">Mark Attendance</a>
+  <a href="{{ url_for('teacher_assignments') }}">Assignments</a>
+  <a href="{{ url_for('teacher_notes') }}">Notes</a>
+  <a href="{{ url_for('teacher_marks') }}">Marks</a>
+  <a href="{{ url_for('teacher_reports') }}">Class Reports</a>
+  <a href="{{ url_for('teacher_insights') }}">AI Insights</a>
+  <a href="{{ url_for('logout') }}">Logout</a>
+</nav>
+{% endblock %}
+{% block content %}
+<header class="topbar"><div><h2>AI Performance Insights</h2><p>smart recommendations using current class signals.</p></div></header>
+<div class="form-card">
+  <ul class="item-list">
+    {% for insight in insights %}
+    <li>{{ insight }}</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "role_base.html" %}
+{% block title %}Teacher Attendance{% endblock %}
+{% block nav %}
+<nav>
+  <a href="{{ url_for('teacher_dashboard') }}">Dashboard</a>
+  <a href="{{ url_for('teacher_attendance') }}">Mark Attendance</a>
+  <a href="{{ url_for('teacher_assignments') }}">Assignments</a>
+  <a href="{{ url_for('teacher_notes') }}">Notes</a>
+  <a href="{{ url_for('teacher_marks') }}">Marks</a>
+  <a href="{{ url_for('teacher_reports') }}">Class Reports</a>
+  <a href="{{ url_for('teacher_insights') }}">AI Insights</a>
+  <a href="{{ url_for('logout') }}">Logout</a>
+</nav>
+{% endblock %}
+{% block content %}
+<header class="topbar"><div><h2>Mark Attendance</h2><p>Update attendance for your students.</p></div></header>
+<form method="post" class="form-card">
+  <label>Course Name<input type="text" name="course_name" value="Grade 8 Math" required /></label>
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead><tr><th>Student</th><th>Class</th><th>Status</th></tr></thead>
+      <tbody>
+        {% for student in students %}
+        <tr>
+          <td>{{ student.name }}</td>
+          <td>{{ student.class_name }}</td>
+          <td>
+            <select name="status_{{ student.id }}">
+              <option value="Present">Present</option>
+              <option value="Absent">Absent</option>
+              <option value="Late">Late</option>
+            </select>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <button class="btn-primary" type="submit">Save Attendance</button>
+</form>
+{% endblock %}

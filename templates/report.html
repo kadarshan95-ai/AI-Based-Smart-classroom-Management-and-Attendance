@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<header class="topbar">
+  <div>
+    <h2>Class Attendance Report</h2>
+    <p>Daily performance summary for {{ today }}.</p>
+  </div>
+  <a class="btn-primary" href="{{ url_for('attendance') }}">Back to Attendance</a>
+</header>
+
+<div class="form-card">
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Class</th>
+          <th>Students</th>
+          <th>Present</th>
+          <th>Attendance Rate</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in report_rows %}
+        <tr>
+          <td>{{ row.class_name }}</td>
+          <td>{{ row.student_count }}</td>
+          <td>{{ row.present_count }}</td>
+          <td>{{ row.rate }}%</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="summary-card">
+    <strong>Report Ready</strong>
+    <p>The system calculates attendance using the latest student records saved in the database.</p>
+    <span class="summary-pill">Live data from SQLite</span>
+  </div>
+</div>
+{% endblock %}

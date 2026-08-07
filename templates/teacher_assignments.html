@@ -1,0 +1,38 @@
+{% extends "role_base.html" %}
+{% block title %}Teacher Assignments{% endblock %}
+{% block nav %}
+<nav>
+  <a href="{{ url_for('teacher_dashboard') }}">Dashboard</a>
+  <a href="{{ url_for('teacher_attendance') }}">Mark Attendance</a>
+  <a href="{{ url_for('teacher_assignments') }}">Assignments</a>
+  <a href="{{ url_for('teacher_notes') }}">Notes</a>
+  <a href="{{ url_for('teacher_marks') }}">Marks</a>
+  <a href="{{ url_for('teacher_reports') }}">Class Reports</a>
+  <a href="{{ url_for('teacher_insights') }}">AI Insights</a>
+  <a href="{{ url_for('logout') }}">Logout</a>
+</nav>
+{% endblock %}
+{% block content %}
+<header class="topbar"><div><h2>Upload Assignments</h2><p>Share student assignment files.</p></div></header>
+<div class="form-card">
+  <form method="post" enctype="multipart/form-data" class="simple-form">
+    <label>Title<input type="text" name="title" required /></label>
+    <label>Course<input type="text" name="course_name" required /></label>
+    <label>Student<input type="text" name="student_name" required /></label>
+    <label>File<input type="file" name="file" required /></label>
+    <button class="btn-primary" type="submit">Upload</button>
+  </form>
+</div>
+<div class="form-card">
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead><tr><th>Title</th><th>Course</th><th>Student</th><th>File</th></tr></thead>
+      <tbody>
+        {% for item in assignments %}
+        <tr><td>{{ item.title }}</td><td>{{ item.course_name }}</td><td>{{ item.student_name }}</td><td><a href="{{ url_for('download_file', filename=item.file_name) }}">{{ item.file_name }}</a></td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "role_base.html" %}
+{% block title %}Admin Dashboard{% endblock %}
+{% block nav %}
+<nav>
+  <a href="{{ url_for('admin_dashboard') }}">Dashboard</a>
+  <a href="{{ url_for('admin_students') }}">Students</a>
+  <a href="{{ url_for('admin_teachers') }}">Teachers</a>
+  <a href="{{ url_for('admin_courses') }}">Courses</a>
+  <a href="{{ url_for('admin_classrooms') }}">Classrooms</a>
+  <a href="{{ url_for('admin_reports') }}">Reports</a>
+  <a href="{{ url_for('logout') }}">Logout</a>
+</nav>
+{% endblock %}
+{% block content %}
+<header class="topbar">
+  <div>
+    <h2>Admin Dashboard</h2>
+    <p>Analytics and management overview.</p>
+  </div>
+</header>
+<section class="stats-grid">
+  {% for stat in stats %}
+  <article class="card stat-card">
+    <h3>{{ stat.title }}</h3>
+    <div class="value">{{ stat.value }}</div>
+    <span>{{ stat.detail }}</span>
+  </article>
+  {% endfor %}
+</section>
+{% endblock %}

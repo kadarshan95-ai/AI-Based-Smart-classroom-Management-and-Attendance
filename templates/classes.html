@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}Classes · SnapClass{% endblock %}
+
+{% block content %}
+<header class="topbar">
+  <div>
+    <h2>Class Management</h2>
+    <p>View and add classes for your training sessions.</p>
+  </div>
+</header>
+
+<div class="form-card">
+  <form method="post" class="simple-form">
+    <h3>Add a new class</h3>
+    <label>
+      Class name
+      <input type="text" name="name" required />
+    </label>
+    <label>
+      Teacher
+      <input type="text" name="teacher" required />
+    </label>
+    <label>
+      Room
+      <input type="text" name="room" required />
+    </label>
+    <label>
+      Status
+      <select name="status">
+        <option value="Active">Active</option>
+        <option value="Live">Live</option>
+        <option value="Review">Review</option>
+      </select>
+    </label>
+    <button class="btn-primary" type="submit">Add Class</button>
+  </form>
+</div>
+
+<div class="form-card">
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Class</th>
+          <th>Teacher</th>
+          <th>Room</th>
+          <th>Students</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for cls in classes %}
+        <tr>
+          <td>{{ cls.name }}</td>
+          <td>{{ cls.teacher }}</td>
+          <td>{{ cls.room }}</td>
+          <td>{{ cls.student_count }}</td>
+          <td>{{ cls.status }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

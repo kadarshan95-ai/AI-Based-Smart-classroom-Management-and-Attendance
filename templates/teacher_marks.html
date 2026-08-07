@@ -1,0 +1,36 @@
+{% extends "role_base.html" %}
+{% block title %}Teacher Marks{% endblock %}
+{% block nav %}
+<nav>
+  <a href="{{ url_for('teacher_dashboard') }}">Dashboard</a>
+  <a href="{{ url_for('teacher_attendance') }}">Mark Attendance</a>
+  <a href="{{ url_for('teacher_assignments') }}">Assignments</a>
+  <a href="{{ url_for('teacher_notes') }}">Notes</a>
+  <a href="{{ url_for('teacher_marks') }}">Marks</a>
+  <a href="{{ url_for('teacher_reports') }}">Class Reports</a>
+  <a href="{{ url_for('teacher_insights') }}">AI Insights</a>
+  <a href="{{ url_for('logout') }}">Logout</a>
+</nav>
+{% endblock %}
+{% block content %}
+<header class="topbar"><div><h2>Enter Student Marks</h2><p>Save subject marks for each student.</p></div></header>
+<form method="post" class="form-card">
+  <label>Course Name<input type="text" name="course_name" value="Grade 8 Math" required /></label>
+  <label>Term<input type="text" name="term" value="Term 1" required /></label>
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead><tr><th>Student</th><th>Class</th><th>Mark</th></tr></thead>
+      <tbody>
+        {% for student in students %}
+        <tr>
+          <td>{{ student.name }}</td>
+          <td>{{ student.class_name }}</td>
+          <td><input type="number" min="0" max="100" name="mark_{{ student.id }}" required /></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <button class="btn-primary" type="submit">Save Marks</button>
+</form>
+{% endblock %}

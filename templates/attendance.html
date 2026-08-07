@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<header class="topbar">
+  <div>
+    <h2>Attendance Tracking</h2>
+    <p>Mark the daily status for each student on {{ today }}.</p>
+  </div>
+  <a class="btn-primary" href="{{ url_for('report') }}">View Report</a>
+</header>
+
+<form method="post" class="form-card">
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Student</th>
+          <th>Class</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for student in students %}
+        <tr>
+          <td>{{ student.name }}</td>
+          <td>{{ student.class_name }}</td>
+          <td>
+            <select name="status_{{ student.id }}">
+              <option value="Present">Present</option>
+              <option value="Absent">Absent</option>
+              <option value="Late">Late</option>
+            </select>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="summary-card">
+    <strong>Attendance summary</strong>
+    <p>Update this view to generate their daily record in the report section.</p>
+    <button class="btn-primary" type="submit">Save Attendance</button>
+  </div>
+</form>
+{% endblock %}

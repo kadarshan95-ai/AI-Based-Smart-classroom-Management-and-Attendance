@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Overview · SnapClass{% endblock %}
+
+{% block content %}
+<header class="topbar">
+  <div>
+    <h2>Welcome back, Admin</h2>
+    <p>Here is today’s classroom snapshot.</p>
+  </div>
+</header>
+
+<section class="stats-grid">
+  {% for stat in stats %}
+  <article class="card stat-card">
+    <h3>{{ stat.title }}</h3>
+    <div class="value">{{ stat.value }}</div>
+    <span>{{ stat.detail }}</span>
+  </article>
+  {% endfor %}
+</section>
+
+<section class="content-grid">
+  <article class="card">
+    <div class="card-header">
+      <h3>Live Classes</h3>
+      <a href="{{ url_for('classes') }}">View all</a>
+    </div>
+    <ul class="item-list">
+      {% for cls in classes %}
+      <li>
+        <div>
+          <strong>{{ cls.name }}</strong>
+          <p>{{ cls.teacher }} • {{ cls.student_count }} students</p>
+        </div>
+        <span class="badge">{{ cls.status }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+  </article>
+
+  <article class="card">
+    <div class="card-header">
+      <h3>Today’s Tasks</h3>
+      <a href="{{ url_for('tasks_page') }}">Plan</a>
+    </div>
+    <ul class="item-list">
+      {% for task in tasks %}
+      <li>
+        <div>
+          <strong>{{ task.title }}</strong>
+          <p>Scheduled at {{ task.time }}</p>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </article>
+</section>
+{% endblock %}

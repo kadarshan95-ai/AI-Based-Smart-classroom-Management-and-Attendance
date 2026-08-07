@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}SnapClass{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <h1>SnapClass</h1>
+        <p>{{ user.name }} · {{ user.role|title }}</p>
+        {% block nav %}
+        <nav>
+          <a href="{{ url_for('logout') }}">Logout</a>
+        </nav>
+        {% endblock %}
+      </aside>
+      <main class="main-content">
+        {% block content %}{% endblock %}
+      </main>
+    </div>
+  </body>
+</html>

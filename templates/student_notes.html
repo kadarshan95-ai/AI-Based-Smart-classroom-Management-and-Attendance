@@ -1,0 +1,28 @@
+{% extends "role_base.html" %}
+{% block title %}Student Notes{% endblock %}
+{% block nav %}
+<nav>
+  <a href="{{ url_for('student_dashboard') }}">Dashboard</a>
+  <a href="{{ url_for('student_attendance') }}">View Attendance</a>
+  <a href="{{ url_for('student_notes') }}">Download Notes</a>
+  <a href="{{ url_for('student_assignments') }}">Submit Assignments</a>
+  <a href="{{ url_for('student_marks') }}">Check Marks</a>
+  <a href="{{ url_for('student_notifications') }}">Notifications</a>
+  <a href="{{ url_for('logout') }}">Logout</a>
+</nav>
+{% endblock %}
+{% block content %}
+<header class="topbar"><div><h2>Notes</h2><p>Download shared learning materials.</p></div></header>
+<div class="form-card">
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead><tr><th>Title</th><th>Course</th><th>File</th></tr></thead>
+      <tbody>
+        {% for row in rows %}
+        <tr><td>{{ row.title }}</td><td>{{ row.course_name }}</td><td><a href="{{ url_for('download_file', filename=row.file_name) }}">{{ row.file_name }}</a></td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "role_base.html" %}
+{% block title %}Student Dashboard{% endblock %}
+{% block nav %}
+<nav>
+  <a href="{{ url_for('student_dashboard') }}">Dashboard</a>
+  <a href="{{ url_for('student_attendance') }}">View Attendance</a>
+  <a href="{{ url_for('student_notes') }}">Download Notes</a>
+  <a href="{{ url_for('student_assignments') }}">Submit Assignments</a>
+  <a href="{{ url_for('student_marks') }}">Check Marks</a>
+  <a href="{{ url_for('student_notifications') }}">Notifications</a>
+  <a href="{{ url_for('logout') }}">Logout</a>
+</nav>
+{% endblock %}
+{% block content %}
+<header class="topbar"><div><h2>Student Dashboard</h2><p>Your attendance, marks, and notices.</p></div></header>
+<section class="content-grid">
+  <article class="card">
+    <h3>Recent Attendance</h3>
+    <ul class="item-list">
+      {% for row in attendance_rows %}
+      <li><div><strong>{{ row.course_name }}</strong><p>{{ row.attendance_date }} • {{ row.status }}</p></div></li>
+      {% endfor %}
+    </ul>
+  </article>
+  <article class="card">
+    <h3>Marks</h3>
+    <ul class="item-list">
+      {% for row in mark_rows %}
+      <li><div><strong>{{ row.course_name }}</strong><p>{{ row.term }} • {{ row.mark }}</p></div></li>
+      {% endfor %}
+    </ul>
+  </article>
+</section>
+<section class="content-grid">
+  <article class="card">
+    <h3>Notifications</h3>
+    <ul class="item-list">
+      {% for note in notifications %}
+      <li><div><strong>{{ note.created_at }}</strong><p>{{ note.message }}</p></div></li>
+      {% endfor %}
+    </ul>
+  </article>
+</section>
+{% endblock %}

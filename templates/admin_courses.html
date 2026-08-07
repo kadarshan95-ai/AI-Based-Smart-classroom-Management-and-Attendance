@@ -1,0 +1,43 @@
+{% extends "role_base.html" %}
+{% block title %}Admin Courses{% endblock %}
+{% block nav %}
+<nav>
+  <a href="{{ url_for('admin_dashboard') }}">Dashboard</a>
+  <a href="{{ url_for('admin_students') }}">Students</a>
+  <a href="{{ url_for('admin_teachers') }}">Teachers</a>
+  <a href="{{ url_for('admin_courses') }}">Courses</a>
+  <a href="{{ url_for('admin_classrooms') }}">Classrooms</a>
+  <a href="{{ url_for('admin_reports') }}">Reports</a>
+  <a href="{{ url_for('logout') }}">Logout</a>
+</nav>
+{% endblock %}
+{% block content %}
+<header class="topbar">
+  <div>
+    <h2>Manage Courses</h2>
+    <p>Create academic programs and course schedules.</p>
+  </div>
+</header>
+<div class="form-card">
+  <form method="post" class="simple-form">
+    <h3>Add Course</h3>
+    <label>Name<input type="text" name="name" required /></label>
+    <label>Code<input type="text" name="code" required /></label>
+    <label>Teacher<input type="text" name="teacher_name" required /></label>
+    <label>Classroom<input type="text" name="classroom" required /></label>
+    <button class="btn-primary" type="submit">Save Course</button>
+  </form>
+</div>
+<div class="form-card">
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead><tr><th>Name</th><th>Code</th><th>Teacher</th><th>Classroom</th></tr></thead>
+      <tbody>
+        {% for course in courses %}
+        <tr><td>{{ course.name }}</td><td>{{ course.code }}</td><td>{{ course.teacher_name }}</td><td>{{ course.classroom }}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
